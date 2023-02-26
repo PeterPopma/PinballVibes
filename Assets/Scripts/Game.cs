@@ -6,14 +6,14 @@ using UnityEngine.InputSystem;
 
 public class Game : MonoBehaviour
 {
-    public static Game Instance;
-    Vector3 ballStartPosition = new Vector3(23.4300003f, 11.6300001f, 1.824f);
+    [SerializeField] AudioSource soundPoints;
     [SerializeField] GameObject pfBall;
     [SerializeField] TextMeshProUGUI textScore;
+    public static Game Instance;
+    Vector3 ballStartPosition = new Vector3(23.4300003f, 11.6300001f, 1.824f);
     private float score, currentScore;
 
     public GameObject PfBall { get => pfBall; set => pfBall = value; }
-    public float Score { get => score; set => score = value; }
 
     private void Awake()
     {
@@ -32,6 +32,12 @@ public class Game : MonoBehaviour
         Instantiate(pfBall, ballStartPosition, Quaternion.identity);
     }
 
+    public void IncreaseScore(int amount)
+    {
+        score += amount;
+        soundPoints.Play();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -43,6 +49,10 @@ public class Game : MonoBehaviour
                 currentScore = score;
             }
             textScore.text = currentScore.ToString("00000000");
+        }
+        else
+        {
+            soundPoints.Stop();
         }
     }
 }

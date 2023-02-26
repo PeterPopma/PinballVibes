@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
+    [SerializeField] AudioSource soundScream;
     Animator animator;
     float falling;
     Vector3 originalPosition;
@@ -34,8 +35,9 @@ public class Person : MonoBehaviour
     {
         if (falling == 0)
         {
+            soundScream.Play();
             falling = 4;
-            Game.Instance.Score += 250;
+            Game.Instance.IncreaseScore(250);
             animator.Play("Fall", 1, 0);
             animator.SetLayerWeight(1, 1);
         }

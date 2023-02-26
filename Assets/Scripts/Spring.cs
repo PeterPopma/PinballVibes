@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spring : MonoBehaviour
 {
+    [SerializeField] AudioSource soundSpring;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +14,7 @@ public class Spring : MonoBehaviour
     private void OnShoot()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, 2.5f);
+        soundSpring.Play();
 
         foreach (Collider collider in colliders)
         {

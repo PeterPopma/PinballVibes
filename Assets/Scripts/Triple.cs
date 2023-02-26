@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Triple : MonoBehaviour
 {
+    [SerializeField] AudioSource soundThree;
     [SerializeField] Transform spawnPosition1, spawnPosition2;
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class Triple : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        soundThree.Play();
         GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball");
         if (balls.Length < 3)
         {

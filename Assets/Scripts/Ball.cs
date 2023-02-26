@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    AudioSource soundBallLost;
     Vector2 previousPosition;
     private new Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
+        soundBallLost = GameObject.Find("Sound/LostBall").GetComponent<AudioSource>();
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -29,6 +31,7 @@ public class Ball : MonoBehaviour
 
         if (transform.position.y < -5)
         {
+            soundBallLost.Play();
             GameObject[] balls = GameObject.FindGameObjectsWithTag("Ball");
             if (balls.Length==1)
             {

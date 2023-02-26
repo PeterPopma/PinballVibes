@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Circle : MonoBehaviour
 {
+    [SerializeField] AudioSource soundCircle;
     [SerializeField] private new Light light;
     private float lightValue;
 
@@ -31,7 +32,8 @@ public class Circle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Game.Instance.Score += 300;
+        soundCircle.Play();
+        Game.Instance.IncreaseScore(300);
         lightValue = 12000;
     }
 }
